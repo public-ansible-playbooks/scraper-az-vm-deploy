@@ -1,0 +1,13 @@
+---
+servers:
+  azrpeu00003:
+    resource_group_name: "M00494-0003-dev-EU-rg"
+    vm_storage_acount_name: "m00494s0003str0000dev"
+    diag_storage_account_name: "m00494s0003deveu003vmlog"
+    vm_name: "azrpeu00003"
+    vnet_name: "M00494-0003-dev-EU-vnet-00122"
+    subnet_name: "private-0001-subnet"
+    vm_size: "Standard DS1 v2"
+    admin_username: "sysadmin"
+    admin_password: "Defaultp@ss1"
+

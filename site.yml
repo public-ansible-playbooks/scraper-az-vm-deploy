@@ -1,0 +1,5 @@
+---
+- hosts: localhost
+  gather_facts: yes
+  roles:
+    - azure_deploy_vm

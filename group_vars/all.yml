@@ -1,0 +1,7 @@
+---
+os_info:
+  "CentOS7.5":
+     offer: "CentOS"
+     publisher: "OpenLogic"
+     sku: '7.5'
+     version: "latest"

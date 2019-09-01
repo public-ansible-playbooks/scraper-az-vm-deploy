@@ -1,0 +1,43 @@
+---
+# tasks file for roles/azure_deploy_vm
+- name: create a storage account for os diagnostics
+  azure_rm_storageaccount:
+    resource_group: {{   }}
+    name: {{ }}
+    account_type: Standard_LRS
+    kind: StorageV2
+  register: result_diagnostics_storage
+
+- name: create a storage account for vm
+  azure_rm_storageaccount:
+    resource_group: {{  }}
+    name: {{  }}
+    account_type: Standard_LRS
+
+- name: create a nic
+  azure_rm_networkinterface:
+    resource_group: {{ }}
+    name: {{ }}
+    virtual_network: {{ }}
+    subnet: {{ }}
+
+- name: Create virtual machine
+  azure_rm_virtualmachine:
+    resource_group: Testing
+    name: testvm001
+    vm_size: Standard_D1a
+    managed_disk_type: 
+    storage_account: testaccount001
+    storage_container: testvm001
+    storage_blob: testvm001.vhd
+    admin_username: sysadmin
+    admin_password: Defaultp@ss1
+    network_interfaces: testnic001
+    image:
+      offer: CentOS
+      publisher: OpenLogic
+      sku: '7.1'
+      version: latest
+
+- name: enable a boot-diagnostics for vm
+  shell: az vm boot-diagnostics enable --storage STORAGE --ids $(az vm list -g RESOURCE_GROUP --query "[].id" -o tsv
